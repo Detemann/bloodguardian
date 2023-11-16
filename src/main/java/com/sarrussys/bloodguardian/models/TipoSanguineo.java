@@ -6,11 +6,11 @@ import java.util.List;
 @Entity
 @Table(name = "tb_tipos_sanguineos")
 public class TipoSanguineo {
+    @Id
+    @Column(name = "id_tipo_sanguineo")
     private Integer idTipoSanguineo;
+    @Column(name = "tipo_sanguineo")
     private String tipoSanguineo;
-    //private List<Doador> doador;
-
-    //private List<BolsaSangue> bolsaSangue;
 
     public TipoSanguineo() {
     }
@@ -20,8 +20,6 @@ public class TipoSanguineo {
         this.tipoSanguineo = tipoSanguineo;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getIdTipoSanguineo() {
         return idTipoSanguineo;
     }
@@ -37,22 +35,4 @@ public class TipoSanguineo {
     public void setTipoSanguineo(String tipoSanguineo) {
         this.tipoSanguineo = tipoSanguineo;
     }
-
-    /*@OneToMany(mappedBy = "idTipoSanguineo")
-    public List<Doador> getDoador() {
-        return doador;
-    }
-
-    public void setDoador(List<Doador> doador) {
-        this.doador = doador;
-    }
-
-    @OneToMany(mappedBy = "tipoSanguineo")
-    public List<BolsaSangue> getBolsaSangue() {
-        return bolsaSangue;
-    }
-
-    public void setBolsaSangue(List<BolsaSangue> bolsaSangue) {
-        this.bolsaSangue = bolsaSangue;
-    }*/
 }

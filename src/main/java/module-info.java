@@ -17,8 +17,9 @@ module com.sarrussys.bloodguardian {
     requires java.sql;
 
     opens com.sarrussys.bloodguardian to javafx.fxml;
+    opens com.sarrussys.bloodguardian.controllers to javafx.fxml;
+    opens com.sarrussys.bloodguardian.models;
     exports com.sarrussys.bloodguardian;
     exports com.sarrussys.bloodguardian.controllers;
     exports com.sarrussys.bloodguardian.models;
-    opens com.sarrussys.bloodguardian.controllers to javafx.fxml;
 }

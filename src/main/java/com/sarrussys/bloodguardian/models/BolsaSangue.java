@@ -6,38 +6,31 @@ import java.util.Date;
 @Entity
 @Table(name = "tb_bolsas_sangue")
 public class BolsaSangue {
+    @Id
+    @Column(name = "cod_bolsa")
     private Integer codigoBolsa;
+    @ManyToOne
+    @JoinColumn(name = "id_tipo_sanguineo")
     private TipoSanguineo tipoSanguineo;
+    @Column(name = "data_coleta")
     private Date dtColeta;
-    private Date validade; //TODO esse atributo não seria uma data?
+    @Column(name = "validade_bolsa")
+    private Date validade;
 
     public BolsaSangue() {
     }
 
-    public BolsaSangue(Integer codigoBolsa, TipoSanguineo tipoSanguineo, Date dtColeta, Date validade) {
+    public BolsaSangue(Integer codigoBolsa, Date dtColeta, Date validade) {
         this.codigoBolsa = codigoBolsa;
-        this.tipoSanguineo = tipoSanguineo;
         this.dtColeta = dtColeta;
         this.validade = validade;
     }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     public Integer getCodigoBolsa() {
         return codigoBolsa;
     }
 
     public void setCodigoBolsa(Integer codigoBolsa) {
         this.codigoBolsa = codigoBolsa;
-    }
-
-    @ManyToOne
-    public TipoSanguineo getTipoSanguineo() {
-        return tipoSanguineo;
-    }
-
-    public void setTipoSanguineo(TipoSanguineo tipoSanguineo) {
-        this.tipoSanguineo = tipoSanguineo;
     }
 
     public Date getDtColeta() {

@@ -48,4 +48,12 @@ public class BolsaSangue {
     public void setValidade(Date validade) {
         this.validade = validade;
     }
+
+    public TipoSanguineo getTipoSanguineo() {
+        return tipoSanguineo;
+    }
+
+    public void setTipoSanguineo(TipoSanguineo tipoSanguineo) {
+        this.tipoSanguineo = tipoSanguineo;
+    }
 }

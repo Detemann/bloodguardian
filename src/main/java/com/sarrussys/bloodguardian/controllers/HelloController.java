@@ -1,5 +1,6 @@
 package com.sarrussys.bloodguardian.controllers;
 
+import com.sarrussys.bloodguardian.models.BolsaSangue;
 import com.sarrussys.bloodguardian.models.Doador;
 import com.sarrussys.bloodguardian.models.TipoSanguineo;
 import com.sarrussys.bloodguardian.repositores.TipoSangueRepository;
@@ -28,16 +29,14 @@ public class HelloController {
             transaction = session.beginTransaction();
 
             // Criando uma instância de Exemplo
-            Doador doador = new Doador();
-            doador.setCpf(123);
-            doador.setNome("Lucas");
-            doador.setTipoSanguineo(tipoSangueRepository.buscarPorNomeTipoSanguineo("A+"));
-            doador.setEmail("email@email.com");
-            doador.setTelefone("999999999");
-            doador.setDtNascimento(new Date());
+            BolsaSangue bolsaSangue = new BolsaSangue();
+            bolsaSangue.setCodigoBolsa(3215);
+            bolsaSangue.setDtColeta(new Date("10/11/2023"));
+            bolsaSangue.setValidade(new Date());
+            bolsaSangue.setTipoSanguineo(tipoSangueRepository.buscarPorNomeTipoSanguineo("AB+"));
 
             // Salvando no banco de dados
-            session.save(doador);
+            session.save(bolsaSangue);
             transaction.commit();
 
             System.out.println("Dado salvo no banco com sucesso!");

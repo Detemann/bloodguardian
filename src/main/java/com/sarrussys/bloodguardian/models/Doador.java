@@ -10,7 +10,7 @@ public class Doador {
     @Column(name = "cpf_doador")
     private Integer cpf;
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "id_tipo_sanguineo", nullable = false)
+    @JoinColumn(name = "id_tipo_sanguineo")
     private TipoSanguineo tipoSanguineo;
     @Column(name = "nome_doador")
     private String nome;

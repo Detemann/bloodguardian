@@ -1,6 +1,7 @@
 package com.sarrussys.bloodguardian.repositores;
 
 import com.sarrussys.bloodguardian.models.BolsaSangue;
+import com.sarrussys.bloodguardian.models.Doador;
 import com.sarrussys.bloodguardian.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -8,64 +9,64 @@ import org.hibernate.Transaction;
 import javax.persistence.Query;
 import java.util.List;
 
-public class BolsaSangueRepository {
+public class DoadorRepository {
     public Session getSession() {
         return HibernateUtil.getSessionFactory().openSession();
     }
 
-    public void salvar(BolsaSangue bolsaSangue) {
+    public void salvar(Doador doador) {
         try(Session session = getSession()) {
             Transaction transaction = session.beginTransaction();
-            session.save(bolsaSangue);
+            session.save(doador);
             transaction.commit();
         }
     }
 
-    public void deletar(int id) {
-        deletar(null , id);
+    public void deletar (String cpf) {
+        deletar(null, cpf);
     }
     /**
      *@description Método com sobrecarga, pode enviar tanto o objeto ou id
-    * @Param BolsaSangue bolsaSangue, int id
-    * **/
-    public void deletar(BolsaSangue bolsaSangue, int id) {
+     * @Param Doador doador, String cpf
+     * **/
+    public void deletar(Doador doador, String cpf) {
         try(Session session = getSession()) {
             Transaction transaction = session.beginTransaction();
-            if(bolsaSangue != null) {
-                session.delete(bolsaSangue);
+            if(doador != null) {
+                session.save(doador);
             } else {
-                bolsaSangue = session.get(BolsaSangue.class, id);
-                session.delete(bolsaSangue);
+                doador = session.get(Doador.class, cpf);
+                session.delete(doador);
             }
             transaction.commit();
         }
     }
 
-    public void update(BolsaSangue bolsaSangue) {
+    public void update(Doador doador) {
         try(Session session = getSession()) {
-            Transaction transaction = session.getTransaction();
-            session.update(bolsaSangue);
+            Transaction transaction = session.beginTransaction();
+            session.update(doador);
             transaction.commit();
         }
     }
 
-    public BolsaSangue buscarPorId(String id) {
+    public Doador buscarPorCpf(String cpf) {
         try(Session session = getSession()) {
-            return session.get(BolsaSangue.class, id);
+            return session.get(Doador.class, cpf);
         }
     }
 
-    public List<BolsaSangue> buscarTodos() {
+    public List<Doador> buscarTodos() {
         try(Session session = getSession()) {
-            String hql = "FROM BolsaSangue";
-            Query query = session.createQuery(hql, BolsaSangue.class);
+            String hql = "FROM Doador";
+            Query query = session.createQuery(hql, Doador.class);
             return query.getResultList();
         }
     }
 
     public List<BolsaSangue> buscarPorTipoSanguineo(String tipo) {
         try(Session session = getSession()) {
-            String hql = "FROM BolsaSangue WHERE tipoSanguineo = :tipo";
+            String hql = "FROM Doador WHERE tipoSanguineo = :tipo";
             Query query = session.createQuery(hql, BolsaSangue.class);
             query.setParameter("tipo", tipo);
             return query.getResultList();

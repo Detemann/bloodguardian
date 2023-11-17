@@ -8,7 +8,7 @@ import java.util.Date;
 public class Doador {
     @Id
     @Column(name = "cpf_doador")
-    private Integer cpf;
+    private String cpf;
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "id_tipo_sanguineo")
     private TipoSanguineo tipoSanguineo;
@@ -24,7 +24,7 @@ public class Doador {
     public Doador() {
     }
 
-    public Doador(Integer cpf, String nome, Date dtNascimento, String email, String telefone) {
+    public Doador(String cpf, String nome, Date dtNascimento, String email, String telefone) {
         this.cpf = cpf;
         this.nome = nome;
         this.dtNascimento = dtNascimento;
@@ -33,11 +33,11 @@ public class Doador {
     }
 
 
-    public Integer getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(Integer cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 

@@ -8,7 +8,7 @@ import java.util.Date;
 public class BolsaSangue {
     @Id
     @Column(name = "cod_bolsa")
-    private Integer codigoBolsa;
+    private String codigoBolsa;
     @ManyToOne
     @JoinColumn(name = "id_tipo_sanguineo")
     private TipoSanguineo tipoSanguineo;
@@ -20,16 +20,16 @@ public class BolsaSangue {
     public BolsaSangue() {
     }
 
-    public BolsaSangue(Integer codigoBolsa, Date dtColeta, Date validade) {
+    public BolsaSangue(String codigoBolsa, Date dtColeta, Date validade) {
         this.codigoBolsa = codigoBolsa;
         this.dtColeta = dtColeta;
         this.validade = validade;
     }
-    public Integer getCodigoBolsa() {
+    public String getCodigoBolsa() {
         return codigoBolsa;
     }
 
-    public void setCodigoBolsa(Integer codigoBolsa) {
+    public void setCodigoBolsa(String codigoBolsa) {
         this.codigoBolsa = codigoBolsa;
     }
 

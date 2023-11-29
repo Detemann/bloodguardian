@@ -54,19 +54,19 @@ public class MainMenuController {
 		}
 	}	
 
-    public void  onActionChangeToEstoquePage(ActionEvent event) {
-        System.out.println("Estoque");
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Estoque-page.fxml"));
-            Parent pane = loader.load();
-            Stage mainStage = new Stage();
-            Scene mainScene = new Scene(pane,550,350);
-            mainStage.setScene(mainScene);
-            mainStage.setTitle("SGBS");
-            mainStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Utils.currentStage(event).close();
-    }
+                public void  onActionChangeToEstoquePage(ActionEvent event) {
+                    System.out.println("Estoque");
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("Estoque-page.fxml"));
+                        Parent pane = loader.load();
+                        Stage mainStage = new Stage();
+                        Scene mainScene = new Scene(pane,550,350);
+                        mainStage.setScene(mainScene);
+                        mainStage.setTitle("SGBS");
+                        mainStage.show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    Utils.currentStage(event).close();
+                }
 }

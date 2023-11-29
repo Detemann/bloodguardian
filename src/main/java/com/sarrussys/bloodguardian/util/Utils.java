@@ -9,15 +9,28 @@ import java.util.Locale;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
+import org.hibernate.annotations.Parent;
 
 public class Utils {
 
 	public static Stage currentStage(ActionEvent event) {
-		return (Stage) ((Node) event.getSource()).getScene().getWindow();
+		if (event.getSource() instanceof MenuItem) {
+			// Se o evento veio de um MenuItem, obtenha o MenuButton associado e, em seguida, a Scene e a Window
+			MenuItem menuItem = (MenuItem) event.getSource();
+			Node parent = menuItem.getParentPopup().getOwnerNode();
+			if (parent instanceof Node) {
+				return (Stage) ((Node) parent).getScene().getWindow();
+			}
+		} else if (event.getSource() instanceof Node) {
+			// Se o evento veio diretamente de um Node
+			return (Stage) ((Node) event.getSource()).getScene().getWindow();
+		}
+		return null;
 	}
 
 	public static Integer tryParseToInt(String str) {

@@ -18,6 +18,8 @@ import javafx.stage.Stage;
 
 public class LoginPageController implements Initializable{
 	
+	private static Scene mainScene;
+	
 	@FXML
 	private Button btnLogin;
 	
@@ -26,13 +28,13 @@ public class LoginPageController implements Initializable{
 	
 	@FXML
 	private Label lblSenha;
-
+	
 	public void loadLoginPage(Stage primaryStage) {
 		System.out.println("Login");
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("Login-page.fxml"));
 			Parent parent = loader.load();
-			Scene mainScene = new Scene(parent,550,350);
+			mainScene = new Scene(parent,550,350);
 			primaryStage.setScene(mainScene);
 			primaryStage.setTitle("SGBS");
 			primaryStage.show();
@@ -40,7 +42,10 @@ public class LoginPageController implements Initializable{
 			e.printStackTrace();
 		}
 	}
-
+	
+	public static Scene getMainScene() {
+		return mainScene;
+	}
 	public void  onBtnLoginAction(ActionEvent event) {
 		MainMenuController main = new MainMenuController();
 		main.loadMainMenu(event);

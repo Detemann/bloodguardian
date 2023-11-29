@@ -26,8 +26,8 @@
          <children>
             <Label text="E-mail" />
             <Label text="Senha" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="textEmail" GridPane.columnIndex="1" />
+            <TextField fx:id="textSenha" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#onBtnLoginAction" text="Login" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets left="45.0" />

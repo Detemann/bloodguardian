@@ -1,6 +1,5 @@
 package com.sarrussys.bloodguardian.repositores;
 
-import com.sarrussys.bloodguardian.models.BolsaSangue;
 import com.sarrussys.bloodguardian.models.Saidas;
 import com.sarrussys.bloodguardian.util.HibernateUtil;
 import org.hibernate.Session;

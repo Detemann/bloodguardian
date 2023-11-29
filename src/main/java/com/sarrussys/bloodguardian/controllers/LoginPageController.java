@@ -26,21 +26,24 @@ public class LoginPageController implements Initializable{
 	
 	@FXML
 	private Label lblSenha;
-	
-	public void  onBtnLoginAction(ActionEvent event) {
+
+	public void loadLoginPage(Stage primaryStage) {
 		System.out.println("Login");
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("Main-Page.fxml"));
-			Parent pane = loader.load();
-			Stage mainStage = new Stage();
-			Scene mainScene = new Scene(pane,550,350);
-			mainStage.setScene(mainScene);
-			mainStage.setTitle("SGBS");
-			mainStage.show();
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("Login-page.fxml"));
+			Parent parent = loader.load();
+			Scene mainScene = new Scene(parent,550,350);
+			primaryStage.setScene(mainScene);
+			primaryStage.setTitle("SGBS");
+			primaryStage.show();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		Utils.currentStage(event).close();
+	}
+
+	public void  onBtnLoginAction(ActionEvent event) {
+		MainMenuController main = new MainMenuController();
+		main.loadMainMenu(event);
 	}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

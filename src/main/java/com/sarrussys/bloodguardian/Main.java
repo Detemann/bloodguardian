@@ -2,6 +2,7 @@ package com.sarrussys.bloodguardian;
 
 import java.io.IOException;
 
+import com.sarrussys.bloodguardian.controllers.LoginPageController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,16 +11,8 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 	public void start(Stage primaryStage) {
-		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("Login-page.fxml"));
-			Parent parent = loader.load();
-			Scene mainScene = new Scene(parent,550,350);
-			primaryStage.setScene(mainScene);
-			primaryStage.setTitle("SGBS");
-			primaryStage.show();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		LoginPageController login = new LoginPageController();
+		login.loadLoginPage(primaryStage);
 	}
 
     public static void main(String[] args) {

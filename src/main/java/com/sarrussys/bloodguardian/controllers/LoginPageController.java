@@ -30,7 +30,7 @@ public class LoginPageController implements Initializable{
 	public void  onBtnLoginAction(ActionEvent event) {
 		System.out.println("Login");
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("Main-page.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("Main-Page.fxml"));
 			Parent pane = loader.load();
 			Stage mainStage = new Stage();
 			Scene mainScene = new Scene(pane,550,350);

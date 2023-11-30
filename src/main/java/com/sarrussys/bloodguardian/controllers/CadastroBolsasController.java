@@ -121,6 +121,13 @@ public class CadastroBolsasController implements Initializable {
 		return new Date(utilDate.getTime());
 	}
 
+	@FXML
+	private void btnVoltar(ActionEvent event) {
+		System.out.println("VoltarEstoque");
+		MainMenuController main = new MainMenuController();
+		main.loadMainMenu(event);
+	}
+
 
 
 }

@@ -28,4 +28,10 @@ public class CadastroSaidasController implements Initializable{
 	public void onBtnSalvarAction(ActionEvent event) {
 	}
 
+	@FXML
+	private void btnVoltar(ActionEvent event) {
+		System.out.println("VoltarEstoque");
+		MainMenuController main = new MainMenuController();
+		main.loadMainMenu(event);
+	}
 }

@@ -2,8 +2,11 @@ package com.sarrussys.bloodguardian.controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import com.sarrussys.bloodguardian.models.BolsaSangue;
+import com.sarrussys.bloodguardian.repositores.BolsaSangueRepository;
 import com.sarrussys.bloodguardian.util.Alerts;
 import com.sarrussys.bloodguardian.util.Utils;
 
@@ -66,15 +69,16 @@ public class LoginPageController implements Initializable{
 	}
 	public void  onBtnLoginAction(ActionEvent event) {
 		MainMenuController main = new MainMenuController();
+		main.loadMainMenu(event);
 
-		String login = getEmail();
-		String senha = getSenha();
-
-		if(login.compareTo("login") == 0 && senha.compareTo("senha") == 0){
-			main.loadMainMenu(event);
-		}else{
-			Alerts.showAlert("Aviso", "Login ou Senha incorreta", "", Alert.AlertType.ERROR);
-		}
+//		String login = getEmail();
+//		String senha = getSenha();
+//
+//		if(login.compareTo("login") == 0 && senha.compareTo("senha") == 0){
+//			main.loadMainMenu(event);
+//		}else{
+//			Alerts.showAlert("Aviso", "Login ou Senha incorreta", "", Alert.AlertType.ERROR);
+//		}
 
 	}
 	@Override

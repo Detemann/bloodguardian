@@ -2,6 +2,8 @@ package com.sarrussys.bloodguardian.models;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Entity
 @Table(name = "tb_bolsas_sangue")
@@ -55,5 +57,13 @@ public class BolsaSangue {
 
     public void setTipoSanguineo(TipoSanguineo tipoSanguineo) {
         this.tipoSanguineo = tipoSanguineo;
+    }
+
+    public int calcularDuracao(AtomicInteger quant) {
+        if (quant.get() < 1) {
+            return 0;
+        }
+
+        return 3 * quant.get();
     }
 }

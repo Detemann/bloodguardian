@@ -63,11 +63,11 @@ public class BolsaSangueRepository {
         }
     }
 
-    public List<BolsaSangue> buscarPorTipoSanguineo(String tipo) {
-        try(Session session = getSession()) {
-            String hql = "FROM BolsaSangue WHERE tipoSanguineo = :tipo";
+    public List<BolsaSangue> buscarPorTipoSanguineo(String idTipoSanguineo) {
+        try (Session session = getSession()) {
+            String hql = "FROM BolsaSangue WHERE tipoSanguineo.idTipoSanguineo = :idTipo";
             Query query = session.createQuery(hql, BolsaSangue.class);
-            query.setParameter("tipo", tipo);
+            query.setParameter("idTipo", Integer.parseInt(idTipoSanguineo));
             return query.getResultList();
         }
     }

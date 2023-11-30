@@ -87,4 +87,37 @@ public class MainMenuController {
         }
         Utils.currentStage(event).close();
     }
+    
+    public void onActionChangeToCadBolsas(ActionEvent event) {
+        System.out.println("Saida");
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("CadastroBolsas.fxml"));
+            Parent pane = loader.load();
+            Stage mainStage = new Stage();
+            Scene mainScene = new Scene(pane,550,350);
+            mainStage.setScene(mainScene);
+            mainStage.setMaximized(true);
+            mainStage.setTitle("SGBS");
+            mainStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Utils.currentStage(event).close();
+    }
+    public void onActionChangeToCadSaidas(ActionEvent event) {
+        System.out.println("Saida");
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("CadastroSaidas.fxml"));
+            Parent pane = loader.load();
+            Stage mainStage = new Stage();
+            Scene mainScene = new Scene(pane,550,350);
+            mainStage.setScene(mainScene);
+            mainStage.setMaximized(true);
+            mainStage.setTitle("SGBS");
+            mainStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Utils.currentStage(event).close();
+    }
 }

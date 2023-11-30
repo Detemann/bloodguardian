@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.sarrussys.bloodguardian.util.Alerts;
 import com.sarrussys.bloodguardian.util.Utils;
 
 import javafx.event.ActionEvent;
@@ -12,8 +13,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class LoginPageController implements Initializable{
@@ -22,6 +25,11 @@ public class LoginPageController implements Initializable{
 	
 	@FXML
 	private Button btnLogin;
+
+	@FXML
+	private TextField textEmail;
+	@FXML
+	private TextField textSenha;
 	
 	@FXML
 	private Label lblEmail;
@@ -42,13 +50,32 @@ public class LoginPageController implements Initializable{
 			e.printStackTrace();
 		}
 	}
+
+	private String getEmail(){
+		return textEmail.getText();
+	}
+
+	private String getSenha(){
+		return textSenha.getText();
+	}
+
+
 	
 	public static Scene getMainScene() {
 		return mainScene;
 	}
 	public void  onBtnLoginAction(ActionEvent event) {
 		MainMenuController main = new MainMenuController();
-		main.loadMainMenu(event);
+
+		String login = getEmail();
+		String senha = getSenha();
+
+		if(login.compareTo("login") == 0 && senha.compareTo("senha") == 0){
+			main.loadMainMenu(event);
+		}else{
+			Alerts.showAlert("Aviso", "Login ou Senha incorreta", "", Alert.AlertType.ERROR);
+		}
+
 	}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

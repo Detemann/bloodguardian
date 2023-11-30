@@ -15,7 +15,7 @@
                     <items>
                         <MenuItem mnemonicParsing="false" onAction="#onActionChangeToEstoquePage" text="Estoque" />
                         <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Saídas" />
+                        <MenuItem mnemonicParsing="false" onAction="#onActionChangeToSaidaPage" text="Saídas" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Gerenciamento">

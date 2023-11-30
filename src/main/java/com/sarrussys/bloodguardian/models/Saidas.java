@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name = "tb_saida")
+@Table(name = "tb_saidas")
 public class Saidas implements Serializable {
     @Id
     @ManyToOne

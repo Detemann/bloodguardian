@@ -17,13 +17,48 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class MainMenuController {
-	
+
     @FXML
     private Button btnEstoque;
 
     public void loadMainMenu(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Main-Page.fxml"));
+            Parent pane = loader.load();
+            Stage mainStage = new Stage();
+            Scene mainScene = new Scene(pane,550,350);
+            mainStage.setScene(mainScene);
+            mainStage.setMaximized(true);
+            mainStage.setTitle("SGBS");
+            mainStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Utils.currentStage(event).close();
+    }
+
+    private synchronized void loadView(String absoluteName) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
+            VBox newVBox = loader.load();
+
+            Scene mainScene = LoginPageController.getMainScene();
+            VBox mainVBox = (VBox) ((ScrollPane) mainScene.getRoot()).getContent();
+
+            Node mainMenu = mainVBox.getChildren().get(0);
+            mainVBox.getChildren().clear();
+            mainVBox.getChildren().add(mainMenu);
+            mainVBox.getChildren().addAll(newVBox.getChildren());
+        }
+        catch (IOException e) {
+            Alerts.showAlert("IO Exception", "Error loading view", e.getMessage(), AlertType.ERROR);
+        }
+    }
+
+    public void  onActionChangeToEstoquePage(ActionEvent event) {
+        System.out.println("Estoque");
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Estoque-page.fxml"));
             Parent pane = loader.load();
             Stage mainStage = new Stage();
             Scene mainScene = new Scene(pane,550,350);
@@ -35,38 +70,21 @@ public class MainMenuController {
         }
         Utils.currentStage(event).close();
     }
-    
-    private synchronized void loadView(String absoluteName) {
-		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
-			VBox newVBox = loader.load();
-			
-			Scene mainScene = LoginPageController.getMainScene();
-			VBox mainVBox = (VBox) ((ScrollPane) mainScene.getRoot()).getContent();
-			
-			Node mainMenu = mainVBox.getChildren().get(0);
-			mainVBox.getChildren().clear();
-			mainVBox.getChildren().add(mainMenu);
-			mainVBox.getChildren().addAll(newVBox.getChildren());
-		}
-		catch (IOException e) {
-			Alerts.showAlert("IO Exception", "Error loading view", e.getMessage(), AlertType.ERROR);
-		}
-	}	
 
-                public void  onActionChangeToEstoquePage(ActionEvent event) {
-                    System.out.println("Estoque");
-                    try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("Estoque-page.fxml"));
-                        Parent pane = loader.load();
-                        Stage mainStage = new Stage();
-                        Scene mainScene = new Scene(pane,550,350);
-                        mainStage.setScene(mainScene);
-                        mainStage.setTitle("SGBS");
-                        mainStage.show();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    Utils.currentStage(event).close();
-                }
+    public void onActionChangeToSaidaPage(ActionEvent event) {
+        System.out.println("Saida");
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Saidas.fxml"));
+            Parent pane = loader.load();
+            Stage mainStage = new Stage();
+            Scene mainScene = new Scene(pane,550,350);
+            mainStage.setScene(mainScene);
+            mainStage.setMaximized(true);
+            mainStage.setTitle("SGBS");
+            mainStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Utils.currentStage(event).close();
+    }
 }

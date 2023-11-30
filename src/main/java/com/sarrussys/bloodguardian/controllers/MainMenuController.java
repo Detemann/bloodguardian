@@ -26,7 +26,7 @@ public class MainMenuController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Main-Page.fxml"));
             Parent pane = loader.load();
             Stage mainStage = new Stage();
-            Scene mainScene = new Scene(pane,550,350);
+            Scene mainScene = new Scene(pane,800,600);
             mainStage.setScene(mainScene);
             mainStage.setTitle("SGBS");
             mainStage.show();
@@ -60,7 +60,7 @@ public class MainMenuController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Estoque-page.fxml"));
             Parent pane = loader.load();
             Stage mainStage = new Stage();
-            Scene mainScene = new Scene(pane,550,350);
+            Scene mainScene = new Scene(pane,800,600);
             mainStage.setScene(mainScene);
             mainStage.setTitle("SGBS");
             mainStage.show();
@@ -76,7 +76,7 @@ public class MainMenuController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Saidas.fxml"));
             Parent pane = loader.load();
             Stage mainStage = new Stage();
-            Scene mainScene = new Scene(pane,550,350);
+            Scene mainScene = new Scene(pane,800,600);
             mainStage.setScene(mainScene);
             mainStage.setTitle("SGBS");
             mainStage.show();
@@ -92,7 +92,7 @@ public class MainMenuController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("CadastroBolsas.fxml"));
             Parent pane = loader.load();
             Stage mainStage = new Stage();
-            Scene mainScene = new Scene(pane,550,350);
+            Scene mainScene = new Scene(pane,800,600);
             mainStage.setScene(mainScene);
             mainStage.setTitle("SGBS");
             mainStage.show();
@@ -107,7 +107,7 @@ public class MainMenuController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("CadastroSaidas.fxml"));
             Parent pane = loader.load();
             Stage mainStage = new Stage();
-            Scene mainScene = new Scene(pane,550,350);
+            Scene mainScene = new Scene(pane,800,600);
             mainStage.setScene(mainScene);
             mainStage.setTitle("SGBS");
             mainStage.show();

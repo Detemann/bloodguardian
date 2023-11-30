@@ -7,17 +7,17 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="447.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sarrussys.bloodguardian.controllers.EstoquePageController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sarrussys.bloodguardian.controllers.EstoquePageController">
     <children>
-        <Button fx:id="btnVoltar" layoutX="14.0" layoutY="404.0" mnemonicParsing="false" onAction="#btnVoltar" text="Voltar" />
-        <TableView fx:id="tableEstoque" layoutX="6.0" layoutY="74.0" prefHeight="321.0" prefWidth="588.0">
+        <Button fx:id="btnVoltar" layoutX="106.0" layoutY="480.0" mnemonicParsing="false" onAction="#btnVoltar" text="Voltar" />
+        <TableView fx:id="tableEstoque" layoutX="106.0" layoutY="140.0" prefHeight="321.0" prefWidth="588.0">
             <columns>
                 <TableColumn fx:id="tableColumnTipo" prefWidth="75.0" text="Tipo" />
                 <TableColumn fx:id="tableColumnQuantidade" prefWidth="217.0" text="Quantidade" />
                 <TableColumn fx:id="tableColumnDuracao" minWidth="0.0" prefWidth="295.0" text="Estimativa de duração do estoque (Dias)" />
             </columns>
         </TableView>
-        <Text layoutX="162.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ESTOQUE DE BOLSAS" textAlignment="CENTER">
+        <Text layoutX="262.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ESTOQUE DE BOLSAS" textAlignment="CENTER">
             <font>
                 <Font size="29.0" />
             </font>

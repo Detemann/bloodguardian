@@ -38,4 +38,9 @@ public class SaidaPageController implements Initializable {
         pieChart.setData(pieChartData);
         pieChart.setTitle("Entrada e Saídas de Sangue");
     }
+    
+    public void onMenuActionBack() {
+
+		MainMenuController main = new MainMenuController();
+    }
 }

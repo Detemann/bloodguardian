@@ -63,6 +63,7 @@ public class MainMenuController {
             Stage mainStage = new Stage();
             Scene mainScene = new Scene(pane,550,350);
             mainStage.setScene(mainScene);
+            mainStage.setMaximized(true);
             mainStage.setTitle("SGBS");
             mainStage.show();
         } catch (IOException e) {

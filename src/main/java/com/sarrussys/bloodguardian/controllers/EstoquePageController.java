@@ -1,11 +1,13 @@
 package com.sarrussys.bloodguardian.controllers;
 
+import com.sarrussys.bloodguardian.Main;
 import com.sarrussys.bloodguardian.models.BolsaSangue;
 import com.sarrussys.bloodguardian.repositores.BolsaSangueRepository;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -53,6 +55,14 @@ public class EstoquePageController implements Initializable {
         List<BolsaSangue> bolsas = service.buscarTodos();
         obsList = FXCollections.observableArrayList(bolsas);
         tableEstoque.setItems(obsList);
+    }
+
+
+    @FXML
+    private void btnVoltar(ActionEvent event) {
+        System.out.println("VoltarEstoque");
+        MainMenuController main = new MainMenuController();
+        main.loadMainMenu(event);
     }
 
 }

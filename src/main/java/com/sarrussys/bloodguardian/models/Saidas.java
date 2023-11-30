@@ -5,11 +5,16 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name = "tb_saida")
+@Table(name = "tb_saidas")
 public class Saidas implements Serializable {
+    @Id
+    @ManyToOne
     private BolsaSangue bolsaSangue;
+    @Column(name = "nome_paciente")
     private String nomePaciente;
+    @Column(name = "nome_hospital")
     private String nomeHospital;
+    @Column(name = "data_saida")
     private Date dtSaida;
 
     public Saidas() {
@@ -21,9 +26,6 @@ public class Saidas implements Serializable {
         this.nomeHospital = nomeHospital;
         this.dtSaida = dtSaida;
     }
-
-    @Id
-    @ManyToOne
     public BolsaSangue getCodigoBolsa() {
         return bolsaSangue;
     }

@@ -6,41 +6,39 @@ import java.util.Date;
 @Entity
 @Table(name = "tb_doadores")
 public class Doador {
-    private Integer cpf;
-    private TipoSanguineo idTipoSanguineo;
+    @Id
+    @Column(name = "cpf_doador")
+    private String cpf;
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "id_tipo_sanguineo")
+    private TipoSanguineo tipoSanguineo;
+    @Column(name = "nome_doador")
     private String nome;
+    @Column(name = "data_nascimento")
     private Date dtNascimento;
+    @Column(name = "email_doador")
     private String email;
+    @Column(name = "telefone_doador")
     private String telefone;
 
     public Doador() {
     }
 
-    public Doador(Integer cpf, TipoSanguineo idTipoSanguineo, String nome, Date dtNascimento, String email, String telefone) {
+    public Doador(String cpf, String nome, Date dtNascimento, String email, String telefone) {
         this.cpf = cpf;
-        this.idTipoSanguineo = idTipoSanguineo;
         this.nome = nome;
         this.dtNascimento = dtNascimento;
         this.email = email;
         this.telefone = telefone;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    public Integer getCpf() {
+
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(Integer cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
-    }
-    @ManyToOne
-    public TipoSanguineo getIdTipoSanguineo() {
-        return idTipoSanguineo;
-    }
-
-    public void setIdTipoSanguineo(TipoSanguineo idTipoSanguineo) {
-        this.idTipoSanguineo = idTipoSanguineo;
     }
 
     public String getNome() {
@@ -73,5 +71,13 @@ public class Doador {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+
+    public TipoSanguineo getTipoSanguineo() {
+        return tipoSanguineo;
+    }
+
+    public void setTipoSanguineo(TipoSanguineo tipoSanguineo) {
+        this.tipoSanguineo = tipoSanguineo;
     }
 }

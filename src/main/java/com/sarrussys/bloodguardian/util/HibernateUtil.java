@@ -8,10 +8,8 @@ public class HibernateUtil {
 
     static {
         try {
-            // Configuração do Hibernate a partir do arquivo hibernate.cfg.xml
             sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
         } catch (Throwable ex) {
-            // Tratamento de exceção durante a inicialização
             throw new ExceptionInInitializerError(ex);
         }
     }

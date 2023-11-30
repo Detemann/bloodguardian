@@ -45,7 +45,7 @@ public class LoginPageController implements Initializable{
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("Login-page.fxml"));
 			Parent parent = loader.load();
-			mainScene = new Scene(parent,550,350);
+			mainScene = new Scene(parent,368,368);
 			primaryStage.setScene(mainScene);
 			primaryStage.setTitle("SGBS");
 			primaryStage.show();
@@ -69,16 +69,15 @@ public class LoginPageController implements Initializable{
 	}
 	public void  onBtnLoginAction(ActionEvent event) {
 		MainMenuController main = new MainMenuController();
-		main.loadMainMenu(event);
 
-//		String login = getEmail();
-//		String senha = getSenha();
-//
-//		if(login.compareTo("login") == 0 && senha.compareTo("senha") == 0){
-//			main.loadMainMenu(event);
-//		}else{
-//			Alerts.showAlert("Aviso", "Login ou Senha incorreta", "", Alert.AlertType.ERROR);
-//		}
+		String login = getEmail();
+		String senha = getSenha();
+
+		if(login.compareTo("admin") == 0 && senha.compareTo("senha") == 0){
+			main.loadMainMenu(event);
+		}else{
+			Alerts.showAlert("Aviso", "Login ou Senha incorreta", "", Alert.AlertType.ERROR);
+		}
 
 	}
 	@Override

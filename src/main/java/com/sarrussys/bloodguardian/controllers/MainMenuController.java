@@ -36,24 +36,6 @@ public class MainMenuController {
         Utils.currentStage(event).close();
     }
 
-    private synchronized void loadView(String absoluteName) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
-            VBox newVBox = loader.load();
-
-            Scene mainScene = LoginPageController.getMainScene();
-            VBox mainVBox = (VBox) ((ScrollPane) mainScene.getRoot()).getContent();
-
-            Node mainMenu = mainVBox.getChildren().get(0);
-            mainVBox.getChildren().clear();
-            mainVBox.getChildren().add(mainMenu);
-            mainVBox.getChildren().addAll(newVBox.getChildren());
-        }
-        catch (IOException e) {
-            Alerts.showAlert("IO Exception", "Error loading view", e.getMessage(), AlertType.ERROR);
-        }
-    }
-
     public void  onActionChangeToEstoquePage(ActionEvent event) {
         System.out.println("Estoque");
         try {

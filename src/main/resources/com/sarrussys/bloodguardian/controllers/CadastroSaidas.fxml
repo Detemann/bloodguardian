@@ -4,6 +4,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -12,44 +14,53 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sarrussys.bloodguardian.controllers.CadastroSaidasController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sarrussys.bloodguardian.controllers.CadastroSaidasController">
    <children>
-      <Pane layoutX="122.0" layoutY="98.0" prefHeight="179.0" prefWidth="356.0" style="-fx-background-color: #4B6F77; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 3, 0, 1, 1); -fx-background-radius: 5;">
+      <Pane layoutX="90.0" layoutY="27.0" prefHeight="560.0" prefWidth="637.0" style="-fx-background-color: #4B6F77; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 3, 0, 1, 1); -fx-background-radius: 5;">
          <children>
-            <Label layoutX="116.0" layoutY="14.0" style="-fx-text-fill: white;" text="Cadastrar Saída">
+            <Label layoutX="255.0" layoutY="14.0" style="-fx-text-fill: white;" text="Cadastrar Saída">
                <font>
                   <Font name="Yu Gothic UI Semibold" size="18.0" />
                </font>
             </Label>
+            <GridPane layoutX="164.0" layoutY="41.0" prefHeight="119.0" prefWidth="309.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.20001220703125" minWidth="10.0" prefWidth="113.4000244140625" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="196.5999755859375" minWidth="10.0" prefWidth="196.5999755859375" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="42.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label style="-fx-text-fill: white;" text="Código da Bolsa" />
+                  <Label style="-fx-text-fill: white;" text="Data de Saída" GridPane.rowIndex="1" />
+                  <TextField fx:id="txtCodBolsa" GridPane.columnIndex="1" />
+                  <Button mnemonicParsing="false" onAction="#onBtnSalvarAction" prefHeight="26.0" prefWidth="75.0" text="Salvar" textFill="#4b6f77" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets left="55.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="Yu Gothic UI Semibold" size="12.0" />
+                     </font>
+                  </Button>
+                  <DatePicker fx:id="dtSaida" prefHeight="25.0" prefWidth="198.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+               </children>
+            </GridPane>
          </children>
       </Pane>
-      <GridPane layoutX="145.0" layoutY="148.0" prefHeight="119.0" prefWidth="309.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.20001220703125" minWidth="10.0" prefWidth="113.4000244140625" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="196.5999755859375" minWidth="10.0" prefWidth="196.5999755859375" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Label style="-fx-text-fill: white;" text="Código da Bolsa" />
-            <Label style="-fx-text-fill: white;" text="Data de Saída" GridPane.rowIndex="1" />
-            <TextField fx:id="txtCodBolsa" GridPane.columnIndex="1" />
-            <Button fx:id="btnSalvar" mnemonicParsing="false" onAction="#onBtnSalvarAction" prefHeight="26.0" prefWidth="75.0" text="Salvar" textFill="#4b6f77" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <GridPane.margin>
-                  <Insets left="55.0" />
-               </GridPane.margin>
-               <font>
-                  <Font name="Yu Gothic UI Semibold" size="12.0" />
-               </font></Button>
-            <DatePicker fx:id="dtSaida" prefHeight="25.0" prefWidth="198.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-         </children>
-      </GridPane>
       <Button fx:id="btnVoltar" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnVoltar" style="-fx-background-color: #4B6F77; -fx-text-fill: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 3, 0, 0, 0);" text="Voltar">
          <font>
             <Font name="Yu Gothic UI Semibold" size="12.0" />
          </font></Button>
+      <TableView fx:id="tableEstoque" layoutX="113.0" layoutY="191.0" prefHeight="371.0" prefWidth="591.0">
+         <columns>
+            <TableColumn fx:id="codigoColumn" prefWidth="74.0" text="Código" />
+            <TableColumn fx:id="dataColetaColumn" prefWidth="189.0" text="Data Coleta" />
+            <TableColumn fx:id="dataValidadeColumn" minWidth="0.0" prefWidth="209.0" text="Data Validade" />
+            <TableColumn fx:id="tipoColumn" minWidth="0.0" prefWidth="118.0" text="Tipo Sanguineo" />
+         </columns>
+      </TableView>
    </children>
 </AnchorPane>

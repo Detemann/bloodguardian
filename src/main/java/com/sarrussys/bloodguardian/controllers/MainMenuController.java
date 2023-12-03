@@ -130,6 +130,7 @@ public class MainMenuController implements Initializable {
 
         // Define o título do gráfico
         barChart.setTitle("Estoque de Sangue");
+        barChart.setLegendVisible(false);
 
         // Adiciona os dados ao gráfico
         barChart.getData().add(series);

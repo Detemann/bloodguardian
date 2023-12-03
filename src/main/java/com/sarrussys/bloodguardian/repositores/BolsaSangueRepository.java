@@ -4,8 +4,8 @@ import com.sarrussys.bloodguardian.models.BolsaSangue;
 import com.sarrussys.bloodguardian.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
-import javax.persistence.Query;
 import java.util.List;
 
 public class BolsaSangueRepository {
@@ -24,11 +24,14 @@ public class BolsaSangueRepository {
     public void deletar(int id) {
         deletar(null , id);
     }
+    public void deletar(BolsaSangue bolsaSangue) {
+        deletar(bolsaSangue , null);
+    }
     /**
      *@description Método com sobrecarga, pode enviar tanto o objeto ou id
     * @Param BolsaSangue bolsaSangue, int id
     * **/
-    public void deletar(BolsaSangue bolsaSangue, int id) {
+    public void deletar(BolsaSangue bolsaSangue, Integer id) {
         try(Session session = getSession()) {
             Transaction transaction = session.beginTransaction();
             if(bolsaSangue != null) {
@@ -71,4 +74,18 @@ public class BolsaSangueRepository {
             return query.getResultList();
         }
     }
+
+    public int quantidadeDeTipo(int idTipoSanguineo) {
+        try (Session session = getSession()) {
+            String hql = "SELECT COUNT(*) FROM BolsaSangue WHERE tipoSanguineo.idTipoSanguineo = :idTipo";
+            Query<Long> query = session.createQuery(hql, Long.class);
+            query.setParameter("idTipo", idTipoSanguineo);
+            Long result = query.uniqueResult();
+
+            return result != null ? result.intValue() : 0;
+        }
+    }
+
+
+
 }

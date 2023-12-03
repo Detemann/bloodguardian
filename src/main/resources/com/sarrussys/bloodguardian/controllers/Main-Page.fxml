@@ -1,35 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SeparatorMenuItem?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sarrussys.bloodguardian.controllers.MainMenuController">
-    <children>
-        <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="600.0">
-            <menus>
-                <Menu mnemonicParsing="false" text="Relatórios">
-                    <items>
-                        <MenuItem mnemonicParsing="false" onAction="#onActionChangeToEstoquePage" text="Estoque" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" onAction="#onActionChangeToSaidaPage" text="Saídas" />
-                    </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Gerenciamento">
-                    <items>
-                        <MenuItem mnemonicParsing="false" onAction="#onActionChangeToCadBolsas" text="Cadastrar Bolsa" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" onAction="#onActionChangeToCadSaidas" text="Saída de Bolsa" />
-                    </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Comunicação Eletrônica">
-                    <items>
-                        <MenuItem mnemonicParsing="false" text="Enviar Emails" />
-                    </items>
-                </Menu>
-            </menus>
-        </MenuBar>
-    </children>
-</VBox>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sarrussys.bloodguardian.controllers.MainMenuController">
+   <children>
+      <Pane prefHeight="70.0" prefWidth="800.0" style="-fx-background-color: #4B6F77; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0);">
+         <children>
+            <MenuButton layoutX="23.0" layoutY="19.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="100.0" style="-fx-background-color: white;" text="Relatórios" textAlignment="CENTER" textFill="#4b6f77">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#onActionChangeToSaidaPage" style="-fx-text-fill: #4B6F77; -fx-font-family: Arial;" text="Saídas" />
+                <MenuItem mnemonicParsing="false" onAction="#onActionChangeToEstoquePage" style="-fx-text-fill: #4B6F77; -fx-padding: 0 30 0 0; -fx-font-family: Arial;" text="Estoque" />
+              </items>
+               <font>
+                  <Font name="Yu Gothic UI Semibold" size="12.0" />
+               </font>
+            </MenuButton>
+            <MenuButton layoutX="151.0" layoutY="19.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="121.0" style="-fx-background-color: white;" text="Gerenciamento" textAlignment="CENTER" textFill="#4b6f77">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#onActionChangeToCadBolsas" style="-fx-text-fill: #4B6F77; -fx-padding: 0 30 0 0; -fx-font-family: Arial;" text="Cadastrar Bolsa" />
+                  <MenuItem mnemonicParsing="false" onAction="#onActionChangeToCadSaidas" style="-fx-text-fill: #4B6F77; -fx-padding: 0 30 0 0; -fx-font-family: Arial;" text="Cadastrar Saída" />
+               </items>
+               <font>
+                  <Font name="Yu Gothic UI Semibold" size="12.0" />
+               </font>
+            </MenuButton>
+            <MenuButton layoutX="299.0" layoutY="19.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="163.0" style="-fx-background-color: white;" text="Comunicação Eletrônica" textAlignment="CENTER" textFill="#4b6f77">
+               <items>
+                  <MenuItem mnemonicParsing="false" style="-fx-text-fill: #4B6F77; -fx-padding: 0 30 0 0; -fx-font-family: Arial;" text="Enviar E-mails" />
+               </items>
+               <font>
+                  <Font name="Yu Gothic UI Semibold" size="12.0" />
+               </font>
+            </MenuButton>
+         </children>
+      </Pane>
+      <Pane layoutX="14.0" layoutY="520.0" prefHeight="66.0" prefWidth="248.0" style="-fx-background-color: #4B6F77; -fx-background-radius: 5; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 3, 0, 1, 1);;">
+         <children>
+            <ImageView fitHeight="66.0" fitWidth="243.0" layoutX="28.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../images/logo.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <BarChart fx:id="barChart" layoutX="150.0" layoutY="100.0">
+
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </BarChart>
+   </children>
+</AnchorPane>

@@ -1,16 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sarrussys.bloodguardian.controllers.CadastroSaidasController">
    <children>
-      <GridPane layoutX="145.0" layoutY="153.0" prefHeight="93.0" prefWidth="309.0">
+      <Pane layoutX="122.0" layoutY="98.0" prefHeight="179.0" prefWidth="356.0" style="-fx-background-color: #4B6F77; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 3, 0, 1, 1); -fx-background-radius: 5;">
+         <children>
+            <Label layoutX="116.0" layoutY="14.0" style="-fx-text-fill: white;" text="Cadastrar Saída">
+               <font>
+                  <Font name="Yu Gothic UI Semibold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <GridPane layoutX="145.0" layoutY="148.0" prefHeight="119.0" prefWidth="309.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.20001220703125" minWidth="10.0" prefWidth="113.4000244140625" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="196.5999755859375" minWidth="10.0" prefWidth="196.5999755859375" />
@@ -21,13 +34,22 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Código da Bolsa" />
-            <Label text="Data de Saída" GridPane.rowIndex="1" />
-            <TextField fx:id="txtCodBolsa" editable="false" GridPane.columnIndex="1" />
-            <TextField fx:id="txtDtSaida" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button fx:id="btnSalvar" mnemonicParsing="false" prefHeight="26.0" prefWidth="193.0" text="Salvar" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label style="-fx-text-fill: white;" text="Código da Bolsa" />
+            <Label style="-fx-text-fill: white;" text="Data de Saída" GridPane.rowIndex="1" />
+            <TextField fx:id="txtCodBolsa" GridPane.columnIndex="1" />
+            <Button fx:id="btnSalvar" mnemonicParsing="false" onAction="#onBtnSalvarAction" prefHeight="26.0" prefWidth="75.0" text="Salvar" textFill="#4b6f77" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="55.0" />
+               </GridPane.margin>
+               <font>
+                  <Font name="Yu Gothic UI Semibold" size="12.0" />
+               </font></Button>
+            <DatePicker fx:id="dtSaida" prefHeight="25.0" prefWidth="198.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <Button fx:id="btnVoltar" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnVoltar" text="Voltar" />
+      <Button fx:id="btnVoltar" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnVoltar" style="-fx-background-color: #4B6F77; -fx-text-fill: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 3, 0, 0, 0);" text="Voltar">
+         <font>
+            <Font name="Yu Gothic UI Semibold" size="12.0" />
+         </font></Button>
    </children>
 </AnchorPane>

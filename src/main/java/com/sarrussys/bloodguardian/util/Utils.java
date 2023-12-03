@@ -1,7 +1,9 @@
 package com.sarrussys.bloodguardian.util;
 
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Locale;
@@ -111,5 +113,14 @@ public class Utils {
 				}
 			}
 		});
+	}
+
+	public static Date convertLocalDateToSqlDate(LocalDate localDate) {
+		// Converter LocalDate para java.util.Date com fuso horário correto
+		Instant instant = localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant();
+		java.util.Date utilDate = Date.from(instant);
+
+		// Converter java.util.Date para java.sql.Date
+		return new Date(utilDate.getTime());
 	}
 }

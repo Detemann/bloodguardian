@@ -35,8 +35,12 @@ public class SaidaPageController implements Initializable {
                         new PieChart.Data("Entradas", resultado.get(0)),
                         new PieChart.Data("Saídas", resultado.get(1)));
 
+
+
         pieChart.setData(pieChartData);
-        pieChart.setTitle("Entrada e Saídas de Sangue");
+        pieChartData.get(0).getNode().setStyle("-fx-pie-color: #4BA777");
+        pieChartData.get(1).getNode().setStyle("-fx-pie-color: #C90000");
+        pieChart.setLegendVisible(false);
     }
     @FXML
     private void btnVoltar(ActionEvent event) {

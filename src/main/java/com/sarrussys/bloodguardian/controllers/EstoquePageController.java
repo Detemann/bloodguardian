@@ -1,8 +1,11 @@
 package com.sarrussys.bloodguardian.controllers;
 
+import com.dlsc.formsfx.view.controls.SimpleDateControl;
 import com.sarrussys.bloodguardian.Main;
 import com.sarrussys.bloodguardian.models.BolsaSangue;
+import com.sarrussys.bloodguardian.models.ModeloDados;
 import com.sarrussys.bloodguardian.repositores.BolsaSangueRepository;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -14,8 +17,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
 import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class EstoquePageController implements Initializable {
@@ -23,11 +26,13 @@ public class EstoquePageController implements Initializable {
     @FXML
     private TableView<BolsaSangue> tableEstoque;
     @FXML
-    private TableColumn<BolsaSangue, String> tableColumnTipo;
+    private TableColumn<BolsaSangue, String> codigoColumn;
     @FXML
-    private TableColumn<BolsaSangue, Integer> tableColumnQuantidade;
+    private TableColumn<BolsaSangue, String> dataColetaColumn;
     @FXML
-    private TableColumn<BolsaSangue, Integer> tableColumnDuracao;
+    private TableColumn<BolsaSangue, String> dataValidadeColumn;
+    @FXML
+    private TableColumn<BolsaSangue, String> tipoColumn;
 
     private ObservableList<BolsaSangue> obsList;
 
@@ -40,21 +45,26 @@ public class EstoquePageController implements Initializable {
 
     private void inicializarTabela() {
         // Configurar as colunas
-        AtomicInteger quant = new AtomicInteger();
-        tableColumnTipo.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTipoSanguineo().getTipoSanguineo()));
-        tableColumnQuantidade.setCellValueFactory(cellData -> {
-            int tipoSanguineo = cellData.getValue().getTipoSanguineo().getIdTipoSanguineo();
-            int quantidade = service.buscarPorTipoSanguineo(""+tipoSanguineo).size();
-            quant.set(quantidade);
-            return new SimpleObjectProperty<>(quantidade);
-        });
-
-        tableColumnDuracao.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().calcularDuracao(quant)));
+        codigoColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCodigoBolsa()));
+        dataColetaColumn.setCellValueFactory(cellData -> new SimpleStringProperty(formatarData(cellData.getValue().getDtColeta())));
+        dataValidadeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(formatarData(cellData.getValue().getValidade())));
+        tipoColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTipoSanguineo().getTipoSanguineo()));
 
         // Preencher a tabela com dados do repositório
+
         List<BolsaSangue> bolsas = service.buscarTodos();
         obsList = FXCollections.observableArrayList(bolsas);
         tableEstoque.setItems(obsList);
+    }
+
+
+    private String formatarData(Date data) {
+        if (data == null) {
+            return null;
+        }
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        return sdf.format(data);
     }
 
 

@@ -2,11 +2,49 @@
 
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sarrussys.bloodguardian.controllers.SaidaPageController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sarrussys.bloodguardian.controllers.SaidaPageController">
    <children>
-      <PieChart fx:id="pieChart" layoutX="190.0" layoutY="168.0" prefHeight="464.0" prefWidth="580.0" AnchorPane.bottomAnchor="168.0" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="190.0" AnchorPane.topAnchor="168.0" />
-      <Button fx:id="btnVoltar" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnVoltar" text="Voltar" />
+      <PieChart fx:id="pieChart" layoutX="59.0" layoutY="168.0" prefHeight="464.0" prefWidth="580.0" style="-fx-stroke: #daa520;" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="59.0" AnchorPane.rightAnchor="321.0" AnchorPane.topAnchor="140.0" />
+      <Pane prefHeight="70.0" prefWidth="800.0" style="-fx-background-color: #4B6F77; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0);">
+         <children>
+            <Button fx:id="btnVoltar" layoutX="23.0" layoutY="22.0" mnemonicParsing="false" onAction="#btnVoltar" prefHeight="26.0" prefWidth="65.0" style="-fx-background-color: white;" text="Voltar" textAlignment="CENTER" textFill="#4b6f77">
+               <font>
+                  <Font name="Yu Gothic UI Semibold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <Label layoutX="501.0" layoutY="288.0" text="Superávit:" textFill="#4b6f77">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="26.0" fitWidth="20.0" layoutX="586.0" layoutY="292.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../images/arrowUp.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="612.0" layoutY="288.0" text="20%" textFill="#4ba777">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="656.0" layoutY="288.0" text="Acima da Meta" textFill="#4ba777">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="238.0" layoutY="96.0" text="Comparação Entradas e Sáidas" textFill="#4b6f77">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

@@ -45,7 +45,7 @@ public class LoginPageController implements Initializable{
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("Login-page.fxml"));
 			Parent parent = loader.load();
-			mainScene = new Scene(parent,368,368);
+			mainScene = new Scene(parent,380,368);
 			primaryStage.setScene(mainScene);
 			primaryStage.setTitle("SGBS");
 			primaryStage.show();

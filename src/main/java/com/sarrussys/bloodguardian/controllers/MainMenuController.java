@@ -142,29 +142,6 @@ public class MainMenuController implements Initializable {
         }
     }
 
-    //GPT
-
-//    private String getColorStyle(double value) {
-//        int maxQuantidade = 50; // Defina o valor máximo desejado para escala de cores
-//
-//        // Calcule a escala com base na quantidade
-//        double scale = Math.min(value / maxQuantidade, 1.0);
-//
-//        // Ajuste as componentes de cor com base na escala e no tom de vermelho desejado
-//        int baseRed = 255; // Defina o tom de vermelho base desejado (0-255)
-//        int red = (int) (baseRed + (255 - baseRed) * scale);
-//        int green = 0; // Sempre zero para garantir a cor vermelha
-//        int blue = 0;  // Sem azul para garantir uma cor vermelha
-//
-//        // Converta para formato hexadecimal
-//        String hexColor = String.format("#%02x%02x%02x", red, green, blue);
-//
-//        // Defina a cor da barra no formato CSS
-//        return String.format("-fx-bar-fill: %s;", hexColor);
-//    }
-
-
-
     private String getColorStyle(double value) {
         int maxQuantidade = 50; // Defina o valor máximo desejado para escala de cores
 
@@ -173,11 +150,11 @@ public class MainMenuController implements Initializable {
 
         // Defina os intervalos de quantidade e seus tons correspondentes de vermelho
         int[][] intervalos = {
-                {1, 5, 255},   // Intervalo 1-5: Vermelho claro (255)
-                {6, 15, 200},  // Intervalo 6-11: Vermelho mais escuro (200)
-                {16, 30, 150}, // Intervalo 12-17: Vermelho mais escuro ainda (150)
-                {30, 50, 100}, // Intervalo 12-17: Vermelho mais escuro ainda (100)
-                {50, 500, 50}, // Intervalo 12-17: Vermelho mais escuro ainda (50)
+                {1, 10, 255},   // Intervalo 1-5: Vermelho claro (255)
+                {11, 20, 200},  // Intervalo 6-11: Vermelho mais escuro (200)
+                {21, 30, 150}, // Intervalo 12-17: Vermelho mais escuro ainda (150)
+                {31, 40, 100}, // Intervalo 12-17: Vermelho mais escuro ainda (100)
+                {41, 500, 50}, // Intervalo 12-17: Vermelho mais escuro ainda (50)
                 // Adicione mais intervalos conforme necessário
         };
 
@@ -203,14 +180,6 @@ public class MainMenuController implements Initializable {
         // Defina a cor da barra no formato CSS
         return String.format("-fx-bar-fill: %s;", hexColor);
     }
-
-
-
-
-
-
-
-
 
 
     @Override

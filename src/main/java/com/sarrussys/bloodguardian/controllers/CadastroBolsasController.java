@@ -4,9 +4,7 @@ import java.net.URL;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.ResourceBundle;
+import java.util.*;
 
 import com.sarrussys.bloodguardian.models.BolsaSangue;
 import com.sarrussys.bloodguardian.models.TipoSanguineo;
@@ -47,7 +45,7 @@ public class CadastroBolsasController implements Initializable {
 				"O+",
 				"O-"
 		);
-
+		//criarBolsasAleatorias(); //esse metodo cria 100 bolsas aleatorias para teste, usar somente com banco vazio
 	}
 
 	@FXML
@@ -128,6 +126,76 @@ public class CadastroBolsasController implements Initializable {
 		main.loadMainMenu(event);
 	}
 
+
+
+
+
+
+
+
+
+
+
+	/*
+		METODOS PARA CRIAR 100 BOLSAS ALEATORIAS
+	 */
+	public void criarBolsasAleatorias() {
+		for (int i = 0; i < 100; i++) {
+			criarBolsaAleatoria();
+		}
+	}
+
+	private void criarBolsaAleatoria() {
+		String codBolsa = generateRandomCodBolsa();
+		TipoSanguineo tipo = generateRandomTipoSanguineo();
+		LocalDate dtColeta = generateRandomLocalDate();
+		LocalDate dtValidade = dtColeta.plusDays(generateRandomValidityDays());
+
+		Date dataColetaSql = convertLocalDateToSqlDate(dtColeta);
+		Date dataValidadeSql = convertLocalDateToSqlDate(dtValidade);
+
+		BolsaSangue bolsa = new BolsaSangue(codBolsa, dataColetaSql, dataValidadeSql);
+		bolsa.setTipoSanguineo(tipo);
+
+		BolsaSangueRepository bolsaRepository = new BolsaSangueRepository();
+		bolsaRepository.salvar(bolsa);
+	}
+
+	private Set<String> codBolsasGerados = new HashSet<>();
+	private String generateRandomCodBolsa() {
+		String codBolsa;
+		do {
+			codBolsa = String.format("%05d", new Random().nextInt(100000));
+		} while (codBolsasGerados.contains(codBolsa));
+
+		codBolsasGerados.add(codBolsa);
+		return codBolsa;
+	}
+
+	private TipoSanguineo generateRandomTipoSanguineo() {
+		String[] tiposSanguineos = {"A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"};
+		int randomIndex = new Random().nextInt(tiposSanguineos.length);
+		String tipoSanguineoString = tiposSanguineos[randomIndex];
+
+		TipoSangueRepository tipoSangueRepository = new TipoSangueRepository();
+		return tipoSangueRepository.buscarPorNomeTipoSanguineo(tipoSanguineoString);
+	}
+
+
+	private LocalDate generateRandomLocalDate() {
+		// Implemente a lógica para gerar uma data aleatória dentro de um intervalo desejado
+		Random random = new Random();
+		int minDay = (int) LocalDate.of(2020, 1, 1).toEpochDay();
+		int maxDay = (int) LocalDate.of(2023, 12, 31).toEpochDay();
+		long randomDay = minDay + random.nextInt(maxDay - minDay);
+
+		return LocalDate.ofEpochDay(randomDay);
+	}
+
+	private int generateRandomValidityDays() {
+		// Implemente a lógica para gerar um número de dias aleatório para a validade
+		return new Random().nextInt(30) + 1; // Modifique conforme necessário
+	}
 
 
 }

@@ -1,5 +1,6 @@
 package com.sarrussys.bloodguardian.controllers;
 
+import com.dlsc.formsfx.view.controls.SimpleDateControl;
 import com.sarrussys.bloodguardian.Main;
 import com.sarrussys.bloodguardian.models.BolsaSangue;
 import com.sarrussys.bloodguardian.models.ModeloDados;
@@ -16,24 +17,24 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class EstoquePageController implements Initializable {
     private BolsaSangueRepository service;
     @FXML
-    private TableView<ModeloDados> tableEstoque;
+    private TableView<BolsaSangue> tableEstoque;
     @FXML
-    private TableColumn<ModeloDados, String> tableColumnTipo;
+    private TableColumn<BolsaSangue, String> codigoColumn;
     @FXML
-    private TableColumn<ModeloDados, String> tableColumnQuantidade;
+    private TableColumn<BolsaSangue, String> dataColetaColumn;
     @FXML
-    private TableColumn<ModeloDados, String> tableColumnDuracao;
+    private TableColumn<BolsaSangue, String> dataValidadeColumn;
+    @FXML
+    private TableColumn<BolsaSangue, String> tipoColumn;
 
-    private ObservableList<ModeloDados> obsList;
+    private ObservableList<BolsaSangue> obsList;
 
 
     @Override
@@ -44,34 +45,26 @@ public class EstoquePageController implements Initializable {
 
     private void inicializarTabela() {
         // Configurar as colunas
-        tableColumnTipo.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTipoSanguineo()));
-        tableColumnQuantidade.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getQuantidade()));
-        tableColumnDuracao.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDuracao()));
+        codigoColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCodigoBolsa()));
+        dataColetaColumn.setCellValueFactory(cellData -> new SimpleStringProperty(formatarData(cellData.getValue().getDtColeta())));
+        dataValidadeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(formatarData(cellData.getValue().getValidade())));
+        tipoColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTipoSanguineo().getTipoSanguineo()));
 
         // Preencher a tabela com dados do repositório
 
-        List<ModeloDados> modelos = new ArrayList<>();
+        List<BolsaSangue> bolsas = service.buscarTodos();
+        obsList = FXCollections.observableArrayList(bolsas);
+        tableEstoque.setItems(obsList);
+    }
 
-        Map<String, Integer> tiposSanguineos = Map.of(
-                "A+", 1,
-                "A-", 2,
-                "B+", 3,
-                "B-", 4,
-                "AB+", 5,
-                "AB-", 6,
-                "O+", 7,
-                "O-", 8
-        );
 
-        for (Map.Entry<String, Integer> entry : tiposSanguineos.entrySet()) {
-            String tipoSanguineo = entry.getKey();
-            int idTipoSanguineo = entry.getValue();
-            int quantidade = service.quantidadeDeTipo(idTipoSanguineo);
-            modelos.add(new ModeloDados(tipoSanguineo, String.valueOf(quantidade)));
+    private String formatarData(Date data) {
+        if (data == null) {
+            return null;
         }
 
-        obsList = FXCollections.observableArrayList(modelos);
-        tableEstoque.setItems(obsList);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        return sdf.format(data);
     }
 
 

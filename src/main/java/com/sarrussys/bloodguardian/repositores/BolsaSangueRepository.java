@@ -24,11 +24,14 @@ public class BolsaSangueRepository {
     public void deletar(int id) {
         deletar(null , id);
     }
+    public void deletar(BolsaSangue bolsaSangue) {
+        deletar(bolsaSangue , null);
+    }
     /**
      *@description Método com sobrecarga, pode enviar tanto o objeto ou id
     * @Param BolsaSangue bolsaSangue, int id
     * **/
-    public void deletar(BolsaSangue bolsaSangue, int id) {
+    public void deletar(BolsaSangue bolsaSangue, Integer id) {
         try(Session session = getSession()) {
             Transaction transaction = session.beginTransaction();
             if(bolsaSangue != null) {

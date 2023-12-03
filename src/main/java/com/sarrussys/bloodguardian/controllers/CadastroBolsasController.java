@@ -12,6 +12,7 @@ import com.sarrussys.bloodguardian.repositores.BolsaSangueRepository;
 import com.sarrussys.bloodguardian.repositores.TipoSangueRepository;
 import com.sarrussys.bloodguardian.util.Alerts;
 
+import com.sarrussys.bloodguardian.util.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -82,8 +83,8 @@ public class CadastroBolsasController implements Initializable {
 			return;
 		}
 
-		Date dataColetaSql = convertLocalDateToSqlDate(dtColeta);
-		Date dataValidadeSql = convertLocalDateToSqlDate(dtValidade);
+		Date dataColetaSql = Utils.convertLocalDateToSqlDate(dtColeta);
+		Date dataValidadeSql = Utils.convertLocalDateToSqlDate(dtValidade);
 
 		BolsaSangue bolsa = new BolsaSangue(codBolsa, dataColetaSql, dataValidadeSql);
 		bolsa.setTipoSanguineo(tipo);
@@ -106,36 +107,12 @@ public class CadastroBolsasController implements Initializable {
 		txtValidade.setValue(null);
 	}
 
-
-
-
-
-	private Date convertLocalDateToSqlDate(LocalDate localDate) {
-		// Converter LocalDate para java.util.Date com fuso horário correto
-		Instant instant = localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant();
-		java.util.Date utilDate = Date.from(instant);
-
-		// Converter java.util.Date para java.sql.Date
-		return new Date(utilDate.getTime());
-	}
-
 	@FXML
 	private void btnVoltar(ActionEvent event) {
 		System.out.println("VoltarEstoque");
 		MainMenuController main = new MainMenuController();
 		main.loadMainMenu(event);
 	}
-
-
-
-
-
-
-
-
-
-
-
 	/*
 		METODOS PARA CRIAR 100 BOLSAS ALEATORIAS
 	 */
@@ -151,8 +128,8 @@ public class CadastroBolsasController implements Initializable {
 		LocalDate dtColeta = generateRandomLocalDate();
 		LocalDate dtValidade = dtColeta.plusDays(generateRandomValidityDays());
 
-		Date dataColetaSql = convertLocalDateToSqlDate(dtColeta);
-		Date dataValidadeSql = convertLocalDateToSqlDate(dtValidade);
+		Date dataColetaSql = Utils.convertLocalDateToSqlDate(dtColeta);
+		Date dataValidadeSql = Utils.convertLocalDateToSqlDate(dtValidade);
 
 		BolsaSangue bolsa = new BolsaSangue(codBolsa, dataColetaSql, dataValidadeSql);
 		bolsa.setTipoSanguineo(tipo);
@@ -180,7 +157,6 @@ public class CadastroBolsasController implements Initializable {
 		TipoSangueRepository tipoSangueRepository = new TipoSangueRepository();
 		return tipoSangueRepository.buscarPorNomeTipoSanguineo(tipoSanguineoString);
 	}
-
 
 	private LocalDate generateRandomLocalDate() {
 		// Implemente a lógica para gerar uma data aleatória dentro de um intervalo desejado
